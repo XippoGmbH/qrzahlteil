@@ -1,14 +1,93 @@
+# Gradle
+build
 .gradle
-/build/
 
-# Ignore Gradle GUI config
-gradle-app.setting
+# Eclispe
+bin/
+.project
+.classpath
+.settings/
+.metadata
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+# Intellij
+out
+.idea
+*.iml
+*.ipr
+*.iws
+atlassian-ide-plugin.xml
 
-# Cache of project
-.gradletasknamecache
+# NetBeans
+.nbattrs
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+# virtual machine crash logs
+hs_err_pid*
+
+# Backup files
+*.sw[nop]
+*~
+.#*
+[#]*#
+
+# dotenv or direnv
+.env
+.envrc
+
+# Miscellaneous
+*.log
+.clover
+.DS_Store
+
+# Profiler and heap dumps
+*.jps
+*.hprof
+/.nb-gradle/
+
+# JavaScript
+node_modules# Gradle
+build
+.gradle
+
+# Eclispe
+bin/
+.project
+.classpath
+.settings/
+.metadata
+
+# Intellij
+out
+.idea
+*.iml
+*.ipr
+*.iws
+atlassian-ide-plugin.xml
+
+# NetBeans
+.nbattrs
+
+# virtual machine crash logs
+hs_err_pid*
+
+# Backup files
+*.sw[nop]
+*~
+.#*
+[#]*#
+
+# dotenv or direnv
+.env
+.envrc
+
+# Miscellaneous
+*.log
+.clover
+.DS_Store
+
+# Profiler and heap dumps
+*.jps
+*.hprof
+/.nb-gradle/
+
+# JavaScript
+node_modules
