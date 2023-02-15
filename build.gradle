@@ -1,0 +1,11 @@
+apply plugin: "com.axelor.app-module"
+
+axelor {
+	title "QR Zahlteil"
+	description "QR Zahlteil App"
+}
+
+dependencies {
+	api project(":modules:axelor-account")
+	
+}
