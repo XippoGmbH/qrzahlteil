@@ -12,12 +12,32 @@
     <string name="apiKey" max="32"/>
     <string name="encryptionKey" max="32"/>
     <string name="initializationVector" max="16"/>
+    <enum name="imageFormat" ref="com.axelor.apps.base.db.QrZahlteilImageFormat"/>
+    <boolean name="acceptPayslip" default="true"/>
+    <boolean name="encryptCommunication" default="true"/>
+    <string name="identificationkey" />
+
+    <extra-code>
+   		<![CDATA[
+            // STATUS
+			public static final String QR_ZAHLTEIL_WEBSOCKET_URI = "wss://qrzahlteil.ch/api1/";
+   		]]>
+    </extra-code>
 
     <track>
       <field name="apiKey"/>
       <field name="encryptionKey"/>
       <field name="initializationVector"/>
+      <field name="acceptPayslip"/>
+      <field name="encryptCommunication"/>
+      <field name="identificationkey"/>
     </track>
   </entity>
+
+  <enum name="QrZahlteilImageFormat" numeric="true">
+    <item name="NO_PICTURES" value="0"/>
+    <item name="SEPARATE_IMAGES" value="1"/>
+    <item name="PDF" value="2"/>
+  </enum>
 
 </domain-models>

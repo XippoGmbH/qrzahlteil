@@ -1,20 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <object-views xmlns="http://axelor.com/xml/ns/object-views"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
-  <form name="app-xippo-qrzahlteil-config-form" title="App QR Zahlteil"
-    model="com.axelor.apps.base.db.AppQrZahlteil" canDelete="false" canNew="false" width="large">
-    <panel name="mainPanel">
-      <field name="apiKey"/>
-      <field name="encryptionKey"/>
-      <field name="initializationVector"/>
-    </panel>
+	<form name="app-xippo-qrzahlteil-config-form"
+		title="App QR Zahlteil" model="com.axelor.apps.base.db.AppQrZahlteil"
+		canDelete="false" canNew="false" width="large">
+		<toolbar>
+			<button name="connectBtn" title="Connect Websocket"
+				onClick="action-qr-zahlteil-test-connect" />
+			<button name="disconnectBtn" title="Disconnect Websocket"
+				onClick="action-qr-zahlteil-test-disconnect" />
+		</toolbar>
+		<panel name="mainPanel">
+			<field name="apiKey" />
+			<field name="encryptionKey" />
+			<field name="initializationVector" />
+			<field name="imageFormat" />
+			<field name="acceptPayslip" />
+			<field name="encryptCommunication" />
+			<field name="identificationkey" />
+		</panel>
 
-    <panel-mail name="mailPanel">
-      <mail-messages limit="4"/>
-      <mail-followers/>
-    </panel-mail>
-  </form>
+		<panel-mail name="mailPanel">
+			<mail-messages limit="4" />
+			<mail-followers />
+		</panel-mail>
+	</form>
+
+	<action-method name="action-qr-zahlteil-test-connect">
+		<call
+			class="com.axelor.apps.xippo.qrzahlteil.web.QrZahlteilController"
+			method="connect" />
+	</action-method>
+
+	<action-method name="action-qr-zahlteil-test-disconnect">
+		<call
+			class="com.axelor.apps.xippo.qrzahlteil.web.QrZahlteilController"
+			method="disconnect" />
+	</action-method>
 
 </object-views>

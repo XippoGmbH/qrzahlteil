@@ -1,2 +1,2 @@
 "importId";"name";"code";"installOrder";"description";"imagePath";"modules";"dependsOn";"sequence"
-39;"QR Zahlteil";"qrzahlteil";4;"QR Zahlteil Configuration";"app_qrzahlteil.png";"qrzahlteil";"account";3
+"";"QR Zahlteil";"qr_zahlteil";4;"QR Zahlteil Configuration";"app_qrzahlteil.png";"qrzahlteil";"account";3

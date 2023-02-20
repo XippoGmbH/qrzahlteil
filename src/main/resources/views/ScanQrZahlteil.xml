@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <form name="test-qr-zahlteil-form" title="QR Zahlteil" model="com.axelor.apps.base.db.Wizard">
+    <panel name="mainPanel">
+      <field name="$test" type="boolean" title="versuch"/>
+      <button name="connectBtn" title="Connect" onClick="action-qr-zahlteil-test-connect"/>
+    </panel>
+  </form>
+
+  <menuitem name="test-qr-zahlteil" order="-5" parent="admin-root-general"
+    title="QR Zahlteil" action="test.qr.zahlteil.scan"/>
+
+  <action-view name="test.qr.zahlteil.scan" title="QR Zahlteil"
+    model="com.axelor.apps.base.db.Wizard">
+    <view name="test-qr-zahlteil-form" type="form"/>
+  </action-view>
+
+</object-views>
