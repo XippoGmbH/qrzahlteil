@@ -4,11 +4,105 @@
   xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
   <form name="test-qr-zahlteil-form" title="QR Zahlteil" model="com.axelor.apps.base.db.Wizard">
-    <panel name="mainPanel">
-      <field name="$test" type="boolean" title="versuch"/>
-      <button name="connectBtn" title="Connect" onClick="action-qr-zahlteil-test-connect"/>
+    <panel name="mainPanel" readonly="true">
+      <field name="$meinTest" showTitle="false" colSpan="12">
+        <viewer>
+        <![CDATA[
+<div>
+            <h2>QrZahlteil.ch Demo (<a href="https://www.qrzahlteil.ch">www.qrzahlteil.ch</a>)
+                <span style="font-size: small;">Version 1.0.11, 16.11.2022</span>
+            </h2>
+        </div>
+        <div>
+            <table border="0">
+                <tr>
+                    <td>Gerät/Website:</td>
+                    <td><input type="text" id="deviceName" style="width: 250px;" value="QrZahlteil.ch Demo" /></td>
+                </tr>
+                <tr>
+                    <td>ApiKey:</td>
+                    <td><input type="text" id="apikey" style="width: 250px;"/></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><span style="font-size: small;">Dieser Demo ApiKey unterliegt Einschränkungen. Eigenen ApiKey erstellen unter <a href="https://www.qrzahlteil.ch/api.html">www.qrzahlteil.ch/api.html</a></span></td>
+                </tr>
+                <tr>
+                    <td valign="top">Datenübertragung:</td>
+                    <td>
+                        <div>
+                            <input type="radio" id="rdoEncryptionNone" name="encryption" value="none">
+                            <label for="rdoEncryptionNone"> Keine Verschlüsselung (nur TLS)</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="rdoEncryptionE2ee" name="encryption" value="e2ee" checked>
+                            <label for="rdoEncryptionE2ee"> Ende-zu-Ende Verschlüsselung (inkl. TLS) <span style="font-size: small;"> (Empfohlen)</span></label>
+                            <br />
+                            <div style="margin-left: 25px; margin-top: 10px;">
+                                Schlüssel:
+                                <input type="text" id="secret" style="width: 250px;" maxlength="128" />
+                                IV: <input type="text" id="iv" style="width: 250px;" maxlength="128" />
+                                <br />
+                                <span style="font-size: small;">Dieser Schlüssel/Secret und der Initialisierungsvektor IV werden für die Ende-zu-Ende Verschlüsselung mittels AES-256-CBC verwendet. Mit diesem Schlüssel werden die Daten zwischen Ihrer Applikation und der QR-Zahlteil App verschlüsselt. Diese Werte müssen pro Anwender generiert werden. Bei Änderung der Datenübertragung oder des Schlüssels muss der Anwender sein Smartphone erneut mit Ihrer Applikation koppeln. Maximale Länge: Secret 32 Bytes, IV 16 Byte.</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">IdentificationKey:</td>
+                    <td>
+                        <input type="text" id="identificationKey" style="width: 250px;" maxlength="128" /><span style="font-size: small;"> (Optional)</span>
+                        <br />
+                        <span style="font-size: small;">Dieser Wert kann zur Identifikation einer Installation genutzt werden. Bitte beachten Sie, dass dieser Wert<br />im Klartext auf dem Server gespeichert wird. Aus Datenschutzgründen sollte dieser Wert Dritten keine Rückschlüsse auf den Anwender ermöglichen. Maximal 128 Zeichen.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Optionen:</td>
+                    <td>
+                        <input type="radio" id="pictureFormatNone" name="pictureFormat" checked />
+                        <label for="pictureFormatNone"> Keine Fotos der Rechnung übertragen</label><br />
+                        <input type="radio" id="pictureFormatSeparatePictures" name="pictureFormat" />
+                        <label for="pictureFormatSeparatePictures"> Fotos der Rechnung einzeln übertragen</label><br />
+                        <input type="radio" id="pictureFormatPdf" name="pictureFormat" />
+                        <label for="pictureFormatPdf"> Fotos der Rechnung als Pdf übertragen</label><br />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <div>
+                <div style="float: left;">
+                    <button id="open" class="connectButton">Verbinden</button>
+                </div>
+                <div>
+                    <button id="close" class="smallButton">Verbindung schliessen</button><br />
+                    <button id="resetSessionId" class="smallButton">SessionId zurücksetzen</button>
+                </div>
+            </div>
+            <br />
+        </div>
+        <div id="pairingContainer">
+            <div>Nach 'Verbinden' folgenden QR-Code mit Smartphone QR-Zahlteil App (<a href="https://play.google.com/store/apps/details?id=com.radynamics.qrzahlteilscanner" target="_blank">Android</a>, <a href="https://apps.apple.com/ch/app/qr-rechnung-scanner/id1496627756" target="_blank">iPhone</a>) scannen</div>
+            <img id="pairingImg" src="" />
+        </div>
+        <div id="scannerName" style="margin-top: 10; margin-bottom: 10; font-weight: bold;">&nbsp;</div>
+        <div>
+            <span>Gescannte Daten:</span><br />
+            <table border="0">
+                <tr>
+                    <td valign="top"><textarea id="scannedData" rows="25" cols="50"></textarea></td>
+                    <td>
+                        <iframe id="pdfPreview" style="height: 400px; width: 500px; display: none;"></iframe>
+                        <div id="picturePreviewContainer" style="height: 100%; display: none;"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+]]>
+        </viewer>
+      </field>
     </panel>
   </form>
+
 
   <menuitem name="test-qr-zahlteil" order="-5" parent="admin-root-general"
     title="QR Zahlteil" action="test.qr.zahlteil.scan"/>
@@ -17,5 +111,21 @@
     model="com.axelor.apps.base.db.Wizard">
     <view name="test-qr-zahlteil-form" type="form"/>
   </action-view>
+
+  <action-script name="test.qr.zahlteil.javaScript"
+    model="com.axelor.apps.base.db.Wizard">
+    <script language="js" transactional="true"><![CDATA[
+
+var req = $request;
+var res = $response;
+var so = req.context;
+
+var serviceUri = QrZahlteil.defaultServiceUri();
+
+alert('test');
+
+
+]]></script>
+  </action-script>
 
 </object-views>

@@ -10,12 +10,12 @@
     <one-to-one ref="com.axelor.apps.base.db.App" name="app"/>
 
     <string name="apiKey" max="32"/>
-    <string name="encryptionKey" max="32"/>
-    <string name="initializationVector" max="16"/>
+    <string name="encryptionKey" min="32" max="32"/>
+    <string name="initializationVector" min="16" max="16"/>
     <enum name="imageFormat" ref="com.axelor.apps.base.db.QrZahlteilImageFormat"/>
     <boolean name="acceptPayslip" default="true"/>
     <boolean name="encryptCommunication" default="true"/>
-    <string name="identificationkey" />
+    <string name="identificationkey"/>
 
     <extra-code>
    		<![CDATA[
